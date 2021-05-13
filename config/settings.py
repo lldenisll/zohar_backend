@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     #my_apps
     'diario_reumatico',
     'paciente',
+    'consultorio',
     #third part
     'corsheaders',
     'djoser',
@@ -79,7 +80,6 @@ CORS_ORIGIN_WHITELIST=(
     'http://localhost:8080',
     'http://127.0.0.1:8080',
     'http://127.0.0.1:8081',
-
 )
 
 ROOT_URLCONF = 'config.urls'
