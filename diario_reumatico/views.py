@@ -1,25 +1,39 @@
 from django.shortcuts import render
-from django.contrib.auth import get_user_model
 from rest_framework.viewsets import ModelViewSet
 from .serializers import  DorSerializer, HumorSerializer, RemediosSerializer, RigidezSerializer
-from rest_framework.permissions import IsAuthenticated  
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Dor, Humor, Remedios, Rigidez
-
+from rest_framework.permissions import IsAuthenticated
 
 class DorView(ModelViewSet):
-    queryset = Dor.objects.all()          
+    permission_classes = (IsAuthenticated,)  
     serializer_class = DorSerializer
+    def get_queryset(self):
+        queryset = Dor.objects.all()
+        user = self.request.user
+        return queryset.filter(email=user)
 
 class HumorView(ModelViewSet):
-    queryset = Humor.objects.all()          
+    permission_classes = (IsAuthenticated,)  
     serializer_class = HumorSerializer
+    def get_queryset(self):
+        queryset = Humor.objects.all()
+        user = self.request.user
+        return queryset.filter(email=user)
 
 class RemediosView(ModelViewSet):
-    queryset = Remedios.objects.all()          
+    permission_classes = (IsAuthenticated,)
     serializer_class = RemediosSerializer
+    def get_queryset(self):
+        queryset = Remedios.objects.all()
+        user = self.request.user
+        return queryset.filter(email=user)
 
 class RigidezView(ModelViewSet):
-    queryset = Rigidez.objects.all()          
+    permission_classes = (IsAuthenticated,)
     serializer_class = RigidezSerializer
+    def get_queryset(self):
+        queryset = Rigidez.objects.all()
+        user = self.request.user
+        return queryset.filter(email=user)

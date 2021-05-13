@@ -9,6 +9,7 @@ class DorSerializer(ModelSerializer):
         fields = ('__all__')
 
 class HumorSerializer(ModelSerializer):
+    email = serializers.PrimaryKeyRelatedField(queryset=get_user_model().objects.all())
     class Meta:
         model = Humor
         fields = ('__all__')

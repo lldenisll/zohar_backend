@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'djoser',
     'rest_framework',
+    'rest_framework_simplejwt.token_blacklist'
 ]
 
 AUTH_USER_MODEL = 'paciente.MyUser'
@@ -63,6 +64,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_ALLOW_ALL=True
+ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
 
 CORS_ALLOW_METHODS = (
         'GET',
@@ -106,9 +108,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'zohar_dev',
+            'USER': 'namorado',
+            'PASSWORD': '',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
 }
 
 
@@ -154,3 +160,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 STATIC_URL = '/static/'
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':(
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+SIMPLE_JWT = {
+    'USER_ID_FIELD': 'email'
+}

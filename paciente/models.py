@@ -40,8 +40,8 @@ class MyUserManager(BaseUserManager):
         return user
 
 class MyUser(AbstractUser):
-  
-    email                        = models.EmailField(verbose_name='email address', max_length=255, unique=True)
+    username                     = None
+    email                        = models.EmailField(primary_key = True, verbose_name='email address', max_length=255, unique=True)
     data_de_nascimento           = models.DateField()
     data_de_diagnostico          = models.DateField()
     altura                       = models.FloatField()
@@ -52,6 +52,8 @@ class MyUser(AbstractUser):
     objects = MyUserManager()
 
     USERNAME_FIELD               = 'email'
+
+
     REQUIRED_FIELDS              = ['data_de_nascimento','altura','data_de_diagnostico','peso']
 
     def __str__(self):
