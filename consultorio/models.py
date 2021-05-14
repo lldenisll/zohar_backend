@@ -4,6 +4,8 @@ from django.conf import settings
 from datetime import datetime 
 
 
+# informações relacionadas a conusultas médicas
+
 class Consultorio(models.Model):
     email                           = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     data_da_consulta                = models.DateField(blank="true")
@@ -14,3 +16,4 @@ class Consultorio(models.Model):
 class Exames(models.Model):
     email                           = models.ForeignKey(MyUser, on_delete=models.CASCADE)
     exames_resultados               = models.FileField() #TODO: Procurar como fazer o fluxo dos arquivos para posterior listagem no frontend
+
